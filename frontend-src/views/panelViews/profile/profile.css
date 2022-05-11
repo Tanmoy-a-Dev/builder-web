@@ -1,0 +1,32 @@
+.header-section {
+	height: 100px;
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	text-transform: capitalize;
+	border-bottom: 1px solid rgb(206, 205, 205);
+	margin-bottom: 10px;
+}
+
+.intro-section {
+	display: flex;
+	justify-content: space-around;
+}
+
+.intro-section .image-section img {
+	width: 60px;
+	height: 60px;
+}
+.intro-section .named-section h3 {
+	text-transform: capitalize;
+}
+.intro-section .named-section h3 span {
+	text-transform: uppercase;
+}
+
+.link-section {
+	margin: 20px 0;
+	display: flex;
+	justify-content: space-around;
+}

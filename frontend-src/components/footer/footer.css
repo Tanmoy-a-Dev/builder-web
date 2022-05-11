@@ -1,0 +1,22 @@
+.footer {
+	width: 100vw;
+	height: 40px;
+	background-color: #343a40;
+	z-index: 1;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	border-top: 1px solid rgb(165, 165, 165);
+}
+.footer p {
+	display: flex;
+	color: #ede0d4;
+	align-items: center;
+}
+
+.footer p span:not(:last-child) {
+	color: #ede0d4;
+	font-weight: bold;
+	font-size: 0.9rem;
+	margin-right: 0.7rem;
+}

@@ -1,0 +1,47 @@
+.custom-control-label { /*// added for alignment with the switch*/
+  padding-top: 0.5rem;
+  padding-left: 2rem;
+  padding-bottom: 0.1rem;
+}
+input[type=checkbox] {
+    cursor: pointer !important;
+}
+
+.custom-switch .custom-control-label::before {
+  left: -2.25rem;
+  height: 1rem;
+  width: 2.5rem;    /*// it was 1.75rem before. Sliding way is longer than before.*/
+  /* pointer-events: all; */
+  border-radius: 1rem;
+  background-color: rgb(236, 49, 49);
+  cursor: pointer
+}
+
+.custom-switch .custom-control-label::after {
+  top: calc(0.25rem + 1px);
+  left: calc(-2.25rem + 2px);
+  width: calc(1.2rem - 4px);   /*// it was calc(1rem - 4px) before. Oval is bigger than before.*/
+  height: calc(1.2rem - 4px);  /*// it was calc(1rem - 4px) before. Oval is bigger than before.*/
+  background-color: #27af2d;
+  border-radius: 1rem; /*//   it was 0.5rem before. Oval is bigger than before.*/
+  transition: background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out, -webkit-transform 0.15s ease-in-out;
+  transition: transform 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  transition: transform 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out, -webkit-transform 0.15s ease-in-out;
+  cursor: pointer
+}
+@media (prefers-reduced-motion: reduce) {
+  .custom-switch .custom-control-label::after {
+    transition: none;
+  }
+}
+
+.custom-switch .custom-control-input:checked ~ .custom-control-label::after {
+  background-color: rgb(254, 255, 254);
+  -webkit-transform: translateX(1.5rem); /*//translateX(0.75rem);*/
+  transform: translateX(1.5rem); /*//translateX(0.75rem);*/
+}
+
+/* for table row */
+.tr:hover {
+  background-color: #fff !important;
+}

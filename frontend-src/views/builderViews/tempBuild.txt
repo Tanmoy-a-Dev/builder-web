@@ -1,0 +1,113 @@
+import axios from "axios";
+import gjsBlocksBasic from "grapesjs-blocks-basic";
+import gjsPresetWebpage from "grapesjs-preset-webpage";
+import React, { useEffect, useState } from "react";
+import { useHistory, useParams } from "react-router-dom";
+import { API_URL } from "../../apiUtils/api-builder";
+import BuilderConfig from "../../configs/builderConfig";
+
+
+
+const [gEditor, setGeditor] = useState(null);
+
+	const { name } = useParams();
+	console.log(name);
+	const history = useHistory();
+
+	// console.log(name);
+	useEffect(() => {
+		const editor = Grapesjs.init({
+			// Indicate where to init the editor. You can also pass an HTMLElement
+			container: "#editor",
+			plugins: [gjsBlocksBasic],
+			pluginsOpts: {
+				gjsBlocksBasic: {},
+			},
+			// assetManager: {
+			// 	storageType: "",
+			// 	storeOnChange: true,
+			// 	storeAfterUpload: true,
+			// 	upload: "https://localhost/assets/upload", //for temporary storage
+			// 	assets: [],
+			// 	uploadFile: (e) => {
+			// 		var files = e.dataTransfer ? e.dataTransfer.files : e.target.files;
+			// 		console.log(files);
+			// 		// ...send somewhere
+			// 	},
+			// },
+			storageManager: {
+				autosave: false,
+				stepsBeforeSave: 1,
+				type: "remote",
+				contentTypeJson: true,
+				storeComponents: true,
+				storeStyles: true,
+				storeHtml: true,
+				storeCss: true,
+				// storeAssets: true,
+				urlStore: `${API_URL}/update-page/${name}`,
+				urlLoad: `${API_URL}/single-page/${name}`,
+				headers: {
+					"Content-Type": "application/json",
+				},
+			},
+		});
+
+		// editor.AssetManager.getAll().on("reset change", function (asset) {
+		// 	console.log("Assets changed", asset);
+		// });
+		setGeditor(editor);
+		editor.Panels.addButton("options", [
+			{
+				id: "save-db",
+				className: "fa fa-floppy-o",
+				command: "save-db",
+				attributes: { title: "Save DB" },
+			},
+		]);
+
+		// Add the command
+		editor.Commands.add("save-db", {
+			run: function (editor, sender) {
+				sender && sender.set("active", 0); // turn off the button
+				editor.store();
+
+				var htmldata = editor.getHtml();
+
+				editor.on("storage:store", function (e) {
+					console.log(e);
+					axios.post(`${API_URL}/update-page/${name}`, e, {
+						withCredentials: true,
+					});
+					history.push("/admin-panel/page-builder/build-pages");
+				});
+			},
+		});
+		// editor.on("storage:error", (err) => {
+		// 	alert(`Error: ${err}`);
+		// });
+
+		// editor.AssetManager.getAll().on("reset change", function (asset) {
+		// 	console.log("Assets changed", asset);
+		// });
+
+		editor.on("storage:load", function (e) {
+			console.log("Loaded ", e.datas.html);
+		});
+	}, [name]);
+
+	const loadBuilder = () => {
+		const editor = Grapesjs.init(BuilderConfig(name));
+		setGeditor(editor);
+	};
+
+	// gEditor && console.log(typeof gEditor.getHtml());
+
+	return (
+		<>
+			<div id="editor"></div>
+
+			{/* blocks */}
+			{/* <div id="blocks"></div> */}
+		</>
+	);

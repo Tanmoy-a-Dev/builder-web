@@ -1,0 +1,36 @@
+.layout {
+	display: flex;
+	height: 100vh;
+	color: #ede0d4;
+}
+
+.left {
+	width: 250px;
+	height: 100%;
+	transition: all 0.5s;
+	background-color: #343a40;
+	z-index: 2;
+	box-shadow: 15px 4px 35px -16px rgba(0, 0, 0, 0.79);
+	-webkit-box-shadow: 15px 4px 35px -16px rgba(0, 0, 0, 0.79);
+	-moz-box-shadow: 15px 4px 35px -16px rgba(0, 0, 0, 0.79);
+}
+
+.right {
+	width: calc(100vw - 250px);
+	display: flex;
+	flex-direction: column;
+}
+
+@media screen and (max-width: 812px) {
+	.right {
+		width: 100vw;
+	}
+	.left {
+		position: absolute;
+		top: 50px;
+		left: -270px;
+	}
+	.left.show {
+		left: 0;
+	}
+}

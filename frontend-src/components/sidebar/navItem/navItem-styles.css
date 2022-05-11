@@ -1,0 +1,64 @@
+.navItem {
+	padding: 0.8rem 1.25rem;
+	text-decoration: none;
+	display: flex;
+	align-items: center;
+}
+
+.navIcon {
+	color: #ede0d4;
+	width: 1.5rem;
+	height: 1.5rem;
+	margin-right: 1rem;
+}
+
+.navLabel {
+	color: #ede0d4;
+	font-size: 1rem;
+}
+
+.navItemHeaderButton {
+	width: 100%;
+	outline: none;
+	border: none;
+	background: transparent;
+	cursor: pointer;
+}
+
+.navItemHeaderChevron {
+	color: #ede0d4;
+	width: 1.5rem;
+	height: 1.5rem;
+	margin-left: auto;
+	transition: transform 0.25s;
+}
+
+.chevronExpanded {
+	transform: rotate(180deg);
+}
+
+/* .chevronExpanded .navChildrenBlock {
+	background-color: #ede0d4;
+	color: #343a40;
+} */
+
+/* .navChildrenBlock {
+	background-color: #ede0d4;
+	color: #343a40;
+} */
+
+.navItem:hover,
+.navItem:hover .navIcon,
+.navItem:hover .navLabel,
+.navItem:hover .navItemHeaderChevron {
+	background-color: #ede0d4;
+	color: #343a40;
+}
+
+.activeNavItem,
+.activeNavItem .navIcon,
+.activeNavItem .navLabel,
+.activeNavItem .navItemHeaderChevron {
+	background-color: #ede0d4;
+	color: #343a40;
+}

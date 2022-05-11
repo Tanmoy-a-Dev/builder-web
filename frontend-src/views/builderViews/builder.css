@@ -1,0 +1,64 @@
+/* Let's highlight canvas boundaries */
+html {
+	overflow: scroll;
+	overflow-x: hidden;
+	-ms-overflow-style: none;
+	scrollbar-width: none;
+}
+
+::-webkit-scrollbar {
+	display: none;
+}
+#gjs {
+	border: 1px solid #444;
+}
+
+/* Reset some default styling */
+.gjs-cv-canvas {
+	width: 100%;
+	height: 100%;
+	top: 0;
+}
+
+/* block */
+/* .gjs-block {
+	width: auto;
+	height: auto;
+	min-height: auto;
+} */
+
+.whole_container {
+	position: relative;
+	width: 100vw;
+	height: 100vh;
+	/* height: 100%; */
+}
+
+.panel_top {
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	background-color: bisque;
+	height: 4vh;
+}
+
+#gjs {
+	position: absolute;
+	top: 4vh;
+	left: 0;
+	right: 200px;
+	/* bottom: 0; */
+	height: 100vh;
+	/* height: calc(100vh - 40px); */
+	width: calc(100% - 200px);
+}
+
+#blocks {
+	position: absolute;
+	top: 40px;
+	right: 0;
+	height: calc(100vh - 40px);
+	width: 200px;
+	/* z-index: 1; */
+}
